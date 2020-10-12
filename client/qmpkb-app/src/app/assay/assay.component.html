@@ -1,0 +1,239 @@
+<div [hidden]="assayDataStatus">
+        Wait! We are pulling data for Assay ....
+</div>
+<div class="container-fluid" *ngIf="foundHits > 0">
+    <br>
+    <ul class="tab">
+      <button class="tablinksassay active" (click)="openTabsAssay($event, 'pepassay')">Peptide Information</button>
+      <button class="tablinksassay" (click)="openTabsAssay($event, 'tran')">Transitions</button>
+      <button class="tablinksassay" (click)="openTabsAssay($event, 'grad')" >Gradients</button>
+      <button class="tablinksassay" (click)="openTabsAssay($event, 'loquant')">Limit of quantification</button>
+    </ul>
+
+    <div id="pepassay" class="tabcontentassay">
+        <div *ngIf="userFastaStatus == 0">
+            <table  id=""  datatable  [dtOptions]="dtOptionsSummary" class="display cell-border" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Peptide Sequence</th>
+                        <th>Molecular Weight</th>
+                        <th>GRAVY Score </th>
+                        <th>Unique in proteome</th>
+                        <th>Present in isoforms</th>
+                        <th>Peptide present in human ortholog</th>
+                        <th>Unique in human proteome</th>
+                        <th>Present in human isoforms</th>
+                        <th>Panel</th>
+                        <th>Fragment Ion</th>
+                        <th>Mean Retention Time(min)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor=" let items of protinfo | keyvalue">
+                      <td> {{ items.key }} </td>
+                      <td> {{ items.value[0]}} </td>
+                      <td> {{ items.value[1]}} </td>
+                      <td> {{ items.value[2]}} </td>
+                      <td [innerHTML]="items.value[3]"></td>
+                      <td> {{ items.value[4]}} </td>
+                      <td> {{ items.value[5]}} </td>
+                      <td [innerHTML]="items.value[6]"></td>
+                      <td [innerHTML]="items.value[7]"></td>
+                      <td [innerHTML]="items.value[8]"></td>
+                      <td> {{ items.value[9]}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="userFastaStatus == 1">
+            <table  id=""  datatable  [dtOptions]="dtOptionsSummary" class="display cell-border" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Peptide Sequence</th>
+                        <th>Molecular Weight</th>
+                        <th>GRAVY Score </th>
+                        <th>Unique in proteome</th>
+                        <th>Present in isoforms</th>
+                        <th>Peptide present in human ortholog</th>
+                        <th>Unique in human proteome</th>
+                        <th>Present in human isoforms</th>
+                        <th>Peptide unique in user\'s database</th>
+                        <th>Peptide in user\'s database</th>
+                        <th>Panel</th>
+                        <th>Fragment Ion</th>
+                        <th>Mean Retention Time(min)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor=" let items of protinfo | keyvalue">
+                      <td> {{ items.key }} </td>
+                      <td> {{ items.value[0]}} </td>
+                      <td >{{ items.value[1]}} </td>
+                      <td> {{ items.value[2]}} </td>
+                      <td [innerHTML]="items.value[3]"></td>
+                      <td> {{ items.value[4]}} </td>
+                      <td> {{ items.value[5]}} </td>
+                      <td [innerHTML]="items.value[6]"></td>
+                      <td [innerHTML]="items.value[7]"></td>
+                      <td> {{ items.value[8]}} </td>
+                      <td [innerHTML]="items.value[9]"></td>
+                      <td [innerHTML]="items.value[10]"></td>
+                      <td> {{ items.value[11]}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="tran" class="tabcontentassay">
+        <div *ngIf="transdiclen > 0">
+            <div *ngFor="let transdicItem of transdic | keyvalue">
+                <div *ngFor="let item of transdicItem.value | keyvalue">
+                    <div *ngIf="item.key == 'Agilent 6490'">
+                        <br>
+                        <table  id=""  datatable  [dtOptions]="dtOptionsTrans" class="display cell-border" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Peptide Sequence</th>
+                                    <th>Instrument<br></th>
+                                    <th>Isotope Label Type<br></th>
+                                    <th>Precursor Ion m/z<br></th>
+                                    <th>Collision Energy<br></th>
+                                    <th>Fragment Ion<br></th>
+                                    <th>Parent Charge State<br></th>
+                                    <th>Product Ion m/z<br></th>
+                                </tr>
+                            </thead>
+                   
+                            <tbody>
+                                <tr *ngFor="let subitem of item.value">
+                                    <td> {{ subitem[0] }}</td>
+                                    <td> {{ subitem[1] }}</td>
+                                    <td> {{ subitem[2] }}</td>
+                                    <td> {{ subitem[3] }}</td>
+                                    <td> {{ subitem[4] }}</td>
+                                    <td> {{ subitem[5] }}</td>
+                                    <td> {{ subitem[6] }}</td>
+                                    <td> {{ subitem[7] }}</td>
+                                    </tr>
+                            </tbody>
+                    
+                        </table>
+                    </div>
+                    <div *ngIf="item.key == 'Agilent 6495'">                                   
+                        <br>
+                        <table  id=""  datatable  [dtOptions]="dtOptionsTrans"  class="display cell-border" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Peptide Sequence</th>
+                                    <th>Instrument<br></th>
+                                    <th>Isotope Label Type<br></th>
+                                    <th>Precursor Ion m/z<br></th>
+                                    <th>Collision Energy<br></th>
+                                    <th>Fragment Ion<br></th>
+                                    <th>Parent Charge State<br></th>
+                                    <th>Product Ion m/z<br></th>
+                            
+                                </tr>
+                            </thead>
+                   
+                            <tbody>
+                                <tr *ngFor="let subitem of item.value">
+                                    <td> {{ subitem[0] }}</td>
+                                    <td> {{ subitem[1] }}</td>
+                                    <td> {{ subitem[2] }}</td>
+                                    <td> {{ subitem[3] }}</td>
+                                    <td> {{ subitem[4] }}</td>
+                                    <td> {{ subitem[5] }}</td>
+                                    <td> {{ subitem[6] }}</td>
+                                    <td> {{ subitem[7] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                         
+                </div>
+            </div>
+        </div>
+        <div *ngIf="transdiclen == 0">
+            <p>No Transition data matched with your search criteria.</p>
+        </div>
+    </div>
+
+    <div id="grad" class="tabcontentassay">
+	      <div *ngIf="gradientlistlen > 0">
+	          <br>
+	          <table  id="" datatable  [dtOptions]="dtOptionsGrad" class="display cell-border" cellspacing="0" width="100%">
+	              <thead>
+	                  <tr>
+                      <th>Peptide Sequence</th>
+	                    <th>Retention Time(min)<br> </th>
+	                    <th>Analytical information<br> </th>
+	                    <th align="center">Gradient<br></th>
+	                   </tr>
+	               </thead>
+	               <tbody>
+	                  <tr *ngFor="let glitems of gradientlist">
+                          <td>{{ glitems[0] }}</td>
+	                      <td>{{ glitems[1] }}</td>
+	                      <td>{{ glitems[2] }}</td>
+	                      <td>                                  
+	                      	<table  id="" datatable class="display cell-border" cellspacing="0" width="100%">
+                                    <thead>
+                                      <tr>
+                                        <th> </th>
+                                        <th> {{ glitems[3] }} </th>
+                                        <th> </th>
+                                      </tr>
+
+                                      <tr>
+                                    	<th *ngFor="let ghitems of gradinfoheader" align="center">{{ghitems}}</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor=" let gditems of glitems[4]">
+
+                                        <td> {{ gditems[0] }} </td>
+                                        <td> {{ gditems[1] }} </td>
+                                        <td> {{ gditems[2]}} </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </td>
+	                   </tr>
+	              </tbody>                                
+	          </table>
+	      </div>
+	      <div *ngIf="gradientlistlen == 0">
+	        <p>No Gradient data matched with your search criteria.</p>
+	      </div>
+    </div>
+    <div id="loquant" class="tabcontentassay">
+        <table  id="" datatable [dtOptions]="dtOptionsLOQ" class="display cell-border" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                  <th>Peptide Sequence</th>
+                  <th>Biological Matrix</th>
+                  <th>Assay LLOQ*</th>
+                  <th>Asssay ULOQ*</th>
+                  <th>Sample LLOQ*</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor=" let items of loquantinfo">
+                <td> {{ items[0]}} </td>
+                <td> {{ items[1] }} </td>
+                <td> {{ items[2] }} </td>
+                <td> {{ items[3]}} </td>
+                <td> {{ items[4]}} </td>
+
+              </tr>
+            </tbody>
+        </table>
+        <div>
+          <p>*Unit-fmol target protein/µg extracted protein</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" *ngIf="foundHits == 0">
+  <p>No Assay data matched with your search criteria.</p>
+</div>

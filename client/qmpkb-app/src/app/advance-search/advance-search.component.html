@@ -1,0 +1,99 @@
+
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fff"
+type = "ball-atom"
+fullScreen = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+
+
+
+<fieldset>
+<form [formGroup] = "queryForm" id='addSearch'>
+      
+	<div class="form-group row" formArrayName="optionGroups">
+		<div class="row1" *ngFor="let $optionGroup of queryForm.controls['optionGroups']['controls'];  let $index=index "[formGroup]="$optionGroup">
+      					<div class="col-sm-4 column1">
+        					<select  id="select-input" #selectInput (change)="onSelectSelect(queryForm.controls['optionGroups']['controls'][$index]['controls']['selectInput'].value,$index)"  formControlName ="selectInput">
+        						<option value="0" disabled selected>Select a Criteria</option>
+        						<option *ngFor="let select of selects" [ngValue]= "select.name">{{select.id}}</option>
+        					</select>
+      				</div>
+          		<div class="col-sm-6 column2" *ngIf="selectInput.value != '9: biologicalMatrix' && selectInput.value != '8: sex' && selectInput.value != '7: mutant'  && selectInput.value != '5: panel'  && selectInput.value != '6: strain' && selectInput.value != '17: fastaFile'">
+          			<textarea name="searchterm" id="where-input" formControlName ="whereInput" placeholder="Search term" data-toggle="tooltip" data-placement="bottom" rows="3" wrap="off" style="resize:none" required></textarea>
+          		</div>
+
+              <div class="col-sm-6 column2" *ngIf="selectInput.value == '5: panel'">
+                <ng-multiselect-dropdown
+                  [placeholder]="'Select a Option'"
+                  [data]="dropdownList"
+                  [settings]="dropdownSettings"
+                  formControlName ="whereInput"
+                >
+                </ng-multiselect-dropdown>
+              </div>
+
+              <div class="col-sm-6 column2" *ngIf="selectInput.value == '6: strain'">
+                <ng-multiselect-dropdown
+                  [placeholder]="'Select a Option'"
+                  [data]="dropdownList"
+                  [settings]="dropdownSettings"
+                  formControlName ="whereInput"
+                >
+                </ng-multiselect-dropdown>
+              </div>
+
+              <div class="col-sm-6 column2" *ngIf="selectInput.value == '7: mutant'">
+                <ng-multiselect-dropdown
+                  [placeholder]="'Select a Option'"
+                  [data]="dropdownList"
+                  [settings]="dropdownSettings"
+                  formControlName ="whereInput"
+                >
+                </ng-multiselect-dropdown>
+              </div>
+
+          		<div class="col-sm-6 column2" *ngIf="selectInput.value == '8: sex'">
+                <ng-multiselect-dropdown
+                  [placeholder]="'Select a Option'"
+                  [data]="dropdownList"
+                  [settings]="dropdownSettings"
+                  formControlName ="whereInput"
+                >
+                </ng-multiselect-dropdown>
+          		</div>
+
+              <div class="col-sm-6 column2" *ngIf="selectInput.value == '9: biologicalMatrix'">
+                <ng-multiselect-dropdown
+                  [placeholder]="'Select a Option'"
+                  [data]="dropdownList"
+                  [settings]="dropdownSettings"
+                  formControlName ="whereInput"
+                >
+                </ng-multiselect-dropdown>
+              </div>
+
+      				<div class="col-sm-6 column2" *ngIf="selectInput.value == '17: fastaFile'" >
+      					<input type='file' (change)='openFile($event)'formControlName ="whereInput" #fileInput required/>
+      				</div>
+
+        			<div class="col-sm-2" *ngIf="$index + 1 != '1'">
+        				<button class="btn btn-primary" type="button" (click)="removeOptionGroup(i)"><i class="fa fa-trash"></i></button>
+        			</div>
+      	</div>
+      
+    </div>
+    
+
+      <button class="btn btn-primary" type="button" [disabled]="formIndex > 16" (click)="addOptionGroup()" id='addButton'>Add an additional search field </button>
+    	<button type="submit"  [disabled]="queryForm.invalid" class="btn btn-success"  id="advanceSubmitButton" (click)="savequeryForm()">Submit</button>
+</form>
+</fieldset>
+<br>
+<div class="alert" [class.visible]="alertIsVisible">
+  Oopps. No Results matched with your search criteria!
+</div>

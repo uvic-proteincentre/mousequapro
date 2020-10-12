@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="PeptideMapper database">
+		<meta name="author" content="Uvic proteincentre">
+
+		<link rel='shortcut icon' type='image/x-icon'  href='{% static "ang/assets/images/icon/favicon.ico" %}'/>
+
+		<title>Rest API Documents |MouseQuaPro</title>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'our_static/swagger_files/css/custom_swagger.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	</head>
+
+	<body>
+		  <!-- After Publication this condition block will be removed -->
+  			{% if user.is_authenticated %}
+				<nav class="navbar navbar-default navbar-fixed-top flex-nowrap">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+					  		</button>
+					  		<a class="navbar-brand" href="/"><img src='{% static "ang/assets/images/logo/logo.png" %}' class="img-responsive"></a>
+						</div>
+						<div id="navbar" class="navbar-collapse collapse justify-content-center">
+					  		<ul class="nav navbar-nav">
+					  		</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="/" data-toggle="tooltip" data-placement="bottom" title="Home page"><i class="fa fa-home fa-fw"></i>&nbsp;Home</a></li>
+								<li><a href="/docapi/" data-toggle="tooltip" data-placement="bottom" title="Application programming interface"><i class="fa fa-cog fa-fw"></i>&nbsp;API</a></li>
+								<li><a href="/protocol" data-toggle="tooltip" data-placement="bottom" title="Sample Preparation Protocol"><i class="fa fa-flask fa-fw"></i>&nbsp;Protocol</a></li>
+								<li><a href="/submission"><i class="fa fa-bank" aria-hidden="true"></i>&nbsp;Data submission</a></li>
+								<li><a href="/help" data-toggle="tooltip" data-placement="bottom" title="Help page"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Help</a></li>
+		<!-- 						<li><a href="/contact"><i class="fa fa-envelope fa-fw"></i>&nbsp;Contact</a></li> -->
+								<li>
+								<form id="apiForm" class="navbar-form">
+								  <div class="form-group" id="restapiPageInput">
+								          <input type="text" id="myMessageAPI" class="form-control" placeholder="Search term" name="searchtermapi"  data-toggle="tooltip" data-placement="bottom" title="Search by UniProtKB Accession,Protein name,Gene name,Peptide sequence, Panel, Strain, Mutant, Sex, Biological Matrix, Sub Cellular Location, Kegg pathway name,Disease name, GO ID, GO term or GO aspects"  style="padding-left: 2px;" required onkeyup="watchInput(this.value)" />
+								    </div>
+									<input class ="btn btn-primary" type="submit" id="submitidapi" value="Submit" disabled="disabled"/>
+									<button onclick="location.assign('/')" id="bt" class ="btn btn-primary">
+    									Advanced search
+  									</button>
+								</form>
+							</li>
+							</ul>
+						</div>
+				  	</div>
+				</nav>
+
+				<div class="container main-container">
+					{% block content %}
+							
+					{% endblock %}
+				</div>
+
+				<script type="text/javascript" src="{% static 'ang/polyfills.js' %}"></script>
+				<script type="text/javascript" src="{% static 'ang/main.js' %}"></script>
+				<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+				<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+				<script src="{% static 'our_static/swagger_files/js/variance-noncommercial-standalone-f47ffcf.min.js' %}"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+				<script src="{% static 'our_static/swagger_files/js/ie10-viewport-bug-workaround.js' %}"></script>
+				<script src="{% static 'our_static/rest_framework_swagger/bundles/vendors.bundle.js' %}"></script>
+				<script src="{% static 'our_static/rest_framework_swagger/bundles/app.bundle.js' %}"></script>
+				<script type="text/javascript">
+					function watchInput(inputevent){
+						if (inputevent.trim().length == 0) {
+							$('#submitidapi').attr('disabled', 'disabled');
+						} else {
+							$('#submitidapi').removeAttr('disabled');
+						}
+					}
+					$("#apiForm").submit(function() {
+    					var searchterm = $('input[name="searchtermapi"]').val().trim();
+                        location.assign('/results?searchterm='+searchterm);
+					}); 
+				</script>
+				<style type="text/css">
+					input[type=text] {
+					    width:100%;
+					    box-sizing: border-box;
+					    border: 2px solid #ccc;
+					    border-radius: 4px;
+					    font-size: 16px;
+					    background-color: white;
+					    /*background-image: url('{% static "img/search-icon.png" %}');*/
+					    background-position: 10px 10px; 
+					    background-repeat: no-repeat;
+					    padding: 12px 20px 12px 40px;
+					    -webkit-transition: width 0.4s ease-in-out;
+					    transition: width 0.4s ease-in-out;
+					}
+				</style>
+				<div class="navbar navbar-default navbar-fixed-bottom" style="padding-bottom:0px; min-height:0px">
+					<div class="container text-center" style="color: black;"> © <script type="text/javascript">document.write(new Date().getFullYear());</script> - Bioinf Proteomics Centre
+					</div>
+				</div>
+  			{% else %}
+    			<meta http-equiv="refresh" content="0;url=/accounts/login/">
+  			{% endif %}
+		</body>
+</html>
+
+

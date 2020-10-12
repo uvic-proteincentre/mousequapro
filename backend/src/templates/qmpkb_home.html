@@ -1,0 +1,46 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MouseQuaPro</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href='{% static "ang/assets/images/icon/favicon.ico" %}'>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'ang/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'our_static/dataTables/css/jquery.dataTables.css' %}">
+  <link rel="stylesheet" href="{% static 'our_static/dataTables/css/buttons.dataTables.css' %}">
+  <link rel="stylesheet" href="{% static 'our_static/dataTables/css/select.dataTables.css' %}">
+  <link rel="stylesheet" href="{% static 'our_static/dataTables/css/responsive.dataTables.css' %}">
+    
+</head>
+<body>
+  <!-- After Publication this condition block will be removed -->
+  {% if user.is_authenticated %}
+    <app-root>Loading...</app-root>
+  {% else %}
+    <meta http-equiv="refresh" content="0;url=/accounts/login/">
+  {% endif %}
+<!-- After Publication this block will be active 
+<app-root>Loading...</app-root> -->
+<script type="text/javascript" src="{% static 'ang/runtime.js' %}"></script>
+<script type="text/javascript" src="{% static 'ang/polyfills.js' %}"></script>
+<script type="text/javascript" src="{% static 'ang/main.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/jquery.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/jszip.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/dataTables.buttons.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/buttons.colVis.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/buttons.flash.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/buttons.html5.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/buttons.print.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/dataTables.select.js' %}"></script>
+<script src="{% static 'our_static/dataTables/js/dataTables.responsive.js' %}"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</body>
+</html>

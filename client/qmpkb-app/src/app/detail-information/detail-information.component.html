@@ -1,0 +1,106 @@
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fff"
+type = "ball-atom"
+fullScreen = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+<app-navbar3></app-navbar3>
+<div class="alert" [class.visible]="alertIsVisible">
+	Oopps. No Results matched with your search criteria!
+</div>
+
+<div *ngIf="foundHits > 0">
+	<div class="sidebar-container">
+	  <ul class="sidebar-navigation">
+	    <li><a href="/detailinformation?{{sideBarLink}}#protein" (click)="gethref($event, 'protein')">Protein</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#assay" (click)="gethref($event, 'assay')">Assay</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#concentration" (click)="gethref($event, 'concentration')">Concentration</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#genExp" (click)="gethref($event, 'genExp')">Gene expression</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#protvista" (click)="gethref($event, 'protvista')">Features</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#subcell" (click)="gethref($event, 'subcell')">Subcellular localization</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#pathway" (click)="gethref($event, 'pathway')">Molecular pathway(s)</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#go" (click)="gethref($event, 'go')">GO term associations</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#disease" (click)="gethref($event, 'disease')">Involvement in disease</a></li>
+	    <li><a href="/detailinformation?{{sideBarLink}}#drug" (click)="gethref($event, 'drug')">Drug associations</a></li>
+	  </ul>
+	</div>
+	<div class="content-container">
+
+	  <div class="container-fluid">
+	  	<div class="row" id="protein" >
+		  	<div class="container col-md-6">
+		  		<h2>Protein</h2>
+					<tr>Protein:<b>{{ proteinName }}</b></tr>
+					<tr>Gene:<b>{{ geneName }}</b></tr>
+					<tr>UniProtKB Accession:<b><a target="_blank" href="https://www.uniprot.org/uniprot/{{uniprotkb}}">{{ uniprotkb }}</a></b></tr>
+					<tr>Number of assay(s):<b>{{ assayStat }}</b></tr>
+					<tr>Number of tissues:<b>{{ bioMatStat }}</b></tr>
+					<tr>Number of strains:<b>{{ strainStat }}</b></tr>
+			</div>
+			<div class="container col-md-6">
+				<h3>Human-ortholog</h3>
+
+					<tr>Protein:<b [innerHTML]="orthologData[0].humanProtName"></b></tr>
+					<tr>Gene:<b [innerHTML]="orthologData[0].humanGeneName"></b></tr>
+					<tr>UniProtKB Accession:<b [innerHTML]="orthologData[0].humanUniKb"></b></tr>
+					<tr>Peptide present in human ortholog:<b [innerHTML]="orthologData[0].pepPresentInHumanortholog"></b></tr>
+					<tr *ngIf="availableOtherAssayStatus > 0">Available assays for human ortholog:<b [innerHTML]="orthologData[0].availableAssayInHumanortholog"></b></tr>
+					<tr>Total number of disease association:<b>{{ orthologData[0].disStat }}</b></tr>
+					<tr>Total number of drug association:<b>{{ orthologData[0].drugStat }}</b></tr>
+			</div>
+		</div>
+		<hr>
+
+		<h2 id="assay" >Assay</h2>
+			<app-assay [assaytermQuery]="assayQuery"></app-assay>
+
+		<hr>
+
+		<h2 id="concentration" >Concentration</h2>
+			<app-detail-concentration [concentermQuery]="concenQuery"></app-detail-concentration>
+
+		<hr>
+
+
+		<h2 id="genExp" >Gene expression</h2>
+			<app-gene-expression [geneexptermQuery]="geneExpUniProtKB"></app-gene-expression>
+
+		<hr>
+
+		<h2 id="protvista">Features</h2>
+			<app-protvista-view [protVistatermQuery]="protVistaUniProtKB"></app-protvista-view>
+
+		<hr>
+
+		<h2 id="subcell" >Subcellular localization</h2>
+			<app-subcell-location [subCelltermQuery]="subCellQuery"></app-subcell-location>
+
+	    <hr>
+
+		<h2 id="pathway" >Molecular pathway(s)</h2>
+			<app-pathway [pathwaytermQuery]="pathwayQueryTerm"></app-pathway>
+
+		<hr>
+
+		<h2 id="go" >GO term associations</h2>
+
+			<app-goterm [gotermQuery]="goUniProtKB"></app-goterm>
+		<hr>
+
+		<h2 id="disease" >Involvement in disease</h2>
+			<app-disease-information [diseasetermQuery]="diseaseQuery"></app-disease-information>
+
+		<hr>
+
+		<h2 id="drug" >Drug associations</h2>
+			<app-drug-bank [drugBanktermQuery]="drugbankQuery"></app-drug-bank>
+
+		<hr>
+
+	  </div>
+	</div>
+</div>

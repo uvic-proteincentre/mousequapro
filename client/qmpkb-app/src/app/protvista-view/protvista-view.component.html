@@ -1,0 +1,41 @@
+<div [hidden]="protVistaDataStatus">
+        Wait! We are plotting ProtVista ....
+</div>
+
+<div class="container-fluid" *ngIf="mousePepStart !==undefined">
+	<div align="justify">
+			<br>
+			<table datatable [dtOptions]="dtOptionsProtVista" id="" border="1" class="sdisplay cell-border"  cellspacing="0" width="100%">
+             
+	            <thead>
+	                <tr style="text-align: center;">
+						<td align="center" rowspan="2"><b>Peptide Sequence</b></td>
+						<td align="center" colspan="2"><b>Mouse</b></td>
+						<td align="center" colspan="2"><b>Human</b></td>
+	                </tr>
+	                <tr style="text-align: center;">
+						<td align="center"><b>Start</b></td>
+						<td align="center"><b>End</b></td>
+						<td align="center"><b>Start</b></td>
+						<td align="center"><b>End</b></td>
+	                </tr>
+	            </thead>
+	            <tbody>
+						<tr *ngFor="let items of pepSeqMatchList">
+							<td> {{ items[0] }} </td>
+							<td> {{ items[1] }} </td>
+							<td> {{ items[2] }} </td>
+							<td> {{ items[3] }} </td>
+							<td> {{ items[4] }} </td>
+						</tr>
+	            </tbody>
+        	</table>
+			<br>
+			<div>The image below shows the <b> Sequence Features (ProtVista) </b> for {{ protname }} protein with the suitable MRM peptide highlighted.</div>
+			<h2 *ngIf="mousePepStart >0" >Mouse</h2>
+			<div id='mouseDiv'></div>
+			<h2>Human</h2>
+			<p *ngIf="humanPepStart ==0" >Protvista data is not available in Human</p>
+			<app-human-prott-vista-view [humanProtVistamQuery]="humanProtvistaQueryData"></app-human-prott-vista-view>
+	</div>
+</div>

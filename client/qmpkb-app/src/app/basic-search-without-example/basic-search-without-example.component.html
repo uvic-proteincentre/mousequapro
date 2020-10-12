@@ -1,0 +1,14 @@
+
+<fieldset>
+<form #searchForm='ngForm' class="navbar-form" (ngSubmit)='submitSearch($event, searchForm)'>
+  <div class="form-group">
+          <input type="text" id="myMessage" class="form-control" placeholder="Search term" name="searchterm" [(ngModel)]='searchQuery' data-toggle="tooltip" data-placement="bottom" title="Search by UniProtKB Accession,Protein name,Gene name,Peptide sequence, Panel, Strain, Mutant, Sex, Biological Matrix, Sub Cellular Location, Kegg pathway name,Disease name, GO ID, GO term or GO aspects"  style="padding-left: 2px;" required/>
+    </div>
+		<input class ="btn btn-primary" type="submit" id="submitid" value="Submit" [disabled]="!searchForm.valid"/>
+		<button (click)="moveAdv()" id="bt" class ="btn btn-primary">Advanced search</button>
+</form>
+</fieldset>
+
+<div class="alert" [class.visible]="alertIsVisible">
+	Oopps. No Results matched with your search criteria!
+</div>

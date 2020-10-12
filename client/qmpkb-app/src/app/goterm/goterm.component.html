@@ -1,0 +1,38 @@
+
+<div [hidden]="goDataStatus">
+        Wait! We are pulling GO Data....
+</div>
+<div class="container-fluid" *ngIf="goDataStatus ==true">
+	<div *ngIf="foundHits > 0">
+		<div *ngIf="contextgoterminfolen > 0">
+            <div [innerHTML]="goStat"></div>
+            <br>
+            <table  datatable [dtOptions]="dtOptions" class="display cell-border" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>GO ID</th>
+                        <th>GO Term</th>
+                        <th>GO Aspects</th>
+                        <th>Organism Name</th>
+                    </tr>
+                </thead>
+               
+                <tbody>
+                    <tr *ngFor="let items of contextgoterminfo">
+                        <td><a target="_blank" href="http://www.ebi.ac.uk/QuickGO/GTerm?id={{ items[0] }}">{{ items[0] }}</a></td>
+                        <td>{{ items[1] }}</td>
+                        <td>{{ items[2] }}</td>
+                        <td [innerHTML]="items[3]"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>The table includes curated annotations as in EMBL-EBI <a target="_blank" href="http://www.ebi.ac.uk/QuickGO">QuickGO </a> (and excludes those Inferred from Electronic Annotation -IEA without curation).</div>
+		</div>
+		<div *ngIf="contextgoterminfolen == 0">
+			 <p>No known functions matched with your search criteria.</p>
+		</div>
+	</div>
+	<div *ngIf="foundHits == 0">
+		 <p>No known functions matched with your search criteria.</p>
+	</div>
+</div>

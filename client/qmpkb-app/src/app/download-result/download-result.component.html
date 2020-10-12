@@ -1,0 +1,4 @@
+<div [hidden]="downloadResultStatus">
+        Generating spreadsheet of search results....
+</div>
+<a *ngIf="downloadResultStatus == true" [href]="downloadPathLink">Download Result</a>

@@ -1,0 +1,9 @@
+<div [hidden]="drugDataStatus">
+        Wait! We are pulling Drug Bank Data....
+</div>
+<div class="container-fluid">
+	<input id="myInputDrug" type="text" placeholder="Search.." style="width: 20%;height: 10px;">
+    <div *ngIf="filterDrugBankDataStatus == false" [innerHTML]="drugBankInputData"></div>
+
+    <div *ngIf="filterDrugBankDataStatus == true" [innerHTML]="filterredDrugBankData"></div>
+</div>

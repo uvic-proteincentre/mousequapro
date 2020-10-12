@@ -1,0 +1,20 @@
+{
+     "data": [
+     	{
+		    "Brain":"cyan",
+		    "Brown Adipose":"olive",
+		    "Eye":"rosybrown", 
+		    "Heart":"darksalmon",
+		    "Kidney":"lightcoral",
+		    "Liver Caudate and Right Lobe":"sandybrown",
+		    "Liver Left Lobe":"deepskyblue",
+		    "Lung":"tan",
+		    "Plasma":"tomato",
+		    "Ovary":"goldenrod",
+		    "RBCs":"red",
+		    "Skin":"thistle",
+		    "Testes":"lightpink",
+		    "White Adipose":"plum"
+		}
+     ]
+}

@@ -1,0 +1,37 @@
+{%extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% block content %}
+	<script type="text/javascript">
+		function getBaseURL (){
+			var baseurl = location.protocol + "//" + location.hostname +
+				(location.port && ":" + location.port);
+			document.write(baseurl);
+		}
+	</script>
+
+	<div class="container-fluid">
+		<div align="justify"> 
+			<h2>MouseQuaPro REST API</h2>
+			<p>This section describes how to programmatically access data and services from <script>getBaseURL()</script>.</p>
+			<p>The base restful url for MouseQuaPro  is : <code><b><script>getBaseURL()</script>/restapi/</b></code><br></p>
+			<p>Multiple search terms can be separated by a pipe, i.e. '|', into the specific search field. For example, search for one or more UniProtKB accession(s) (UniProtKB field):<br>
+			<code><script>getBaseURL()</script>/restapi/?UniProtKB Accession=A6X935|O08742</code>. The MouseQuaPro results will be returned for specified UniProtKB Accession Number(s) in a JSON format.<br><br> </p>
+
+		<link href="{% static 'our_static/rest_framework_swagger/bundles/vendors.bundle.css' %}" rel="stylesheet" type="text/css">
+		<link href="{% static 'our_static/rest_framework_swagger/bundles/app.bundle.css' %}" rel="stylesheet" type="text/css">
+		<div id="rest-swagger-ui"></div>
+		{% csrf_token %}
+		<script>
+			var specinfo= {{ spec|safe }};
+			delete specinfo["info"];
+			delete specinfo["schemes"];
+			delete specinfo["paths"]["/docapi/"];
+			specinfo["paths"]["/restapi/"]["get"]["tags"][0]="REST API service";
+			window.drsSpec = specinfo;
+		</script>
+		</div>
+	</div>
+{% endblock %}
+

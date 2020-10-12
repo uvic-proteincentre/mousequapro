@@ -1,0 +1,24 @@
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fff"
+type = "ball-atom"
+fullScreen = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+
+<app-navbar2></app-navbar2>
+
+<div class="alert" [class.visible]="alertIsVisible">
+	Oopps. No Results matched with your search criteria!
+</div>
+
+<div class="alert" [class.visible]="alertIsVisibleValidQuery">
+	Please enter valid query parameters!
+</div>
+
+
+<app-result-page *ngIf="inputQueryStatus > 0" [resultTermQuery]="inputQuery"></app-result-page>
+<app-result-page-user-seq *ngIf="inputFastaQueryStatus > 0" [resultFastaTermQuery]="inputFastaQuery"></app-result-page-user-seq>

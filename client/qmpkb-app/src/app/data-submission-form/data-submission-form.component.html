@@ -1,0 +1,47 @@
+<app-navbar2></app-navbar2>
+<div class="container main-container">
+  <h2 class ='text-align-center' style="color: black;"> For any inquiry, please email us at bioinformatics@proteincentre.com! </h2>
+  <br>
+<!-- Default form contact -->
+<form class="text-center border border-light p-5" [formGroup]="submissionForm" (ngSubmit)="onSubmit()">
+	<p class="h4 mb-4">Data Submission</p>
+	<!-- Name -->
+  	Full Name*:<input type="text" formControlName="submissionFormName" id="defaultSubmissionFormName" mdbInputDirective class="form-control mb-4" placeholder="Full Name">
+  	<!-- Email -->
+  	Email*:<input type="email" formControlName="submissionFormEmail" id="defaultSubmissionFormEmail" mdbInputDirective
+         class="form-control mb-4" placeholder="E-mail">
+  	<!-- Laboratory -->
+  	Laboratory*:<input type="text" formControlName="submissionFormLaboratory" id="defaultSubmissionFormLaboratory" mdbInputDirective
+         class="form-control mb-4" placeholder="Laboratory">
+  	<!-- Description of experiment -->
+  	Description of experiment*:<input type="text" formControlName="submissionFormExperiment" id="defaultSubmissionFormExperiment" mdbInputDirective
+         class="form-control mb-4" placeholder="Description of experiment">
+  	<!-- Publication(s) DOI (if available) -->
+  	Publication(s) DOI (if available):<input type="text" formControlName="submissionFormPublication" id="defaultSubmissionFormPublication" mdbInputDirective
+         class="form-control mb-4" placeholder="Publication(s) DOI">
+  	<!-- Data repository -->
+  	Data repository*:<input type="text" formControlName="submissionFormDataRepository" id="defaultSubmissionFormDataRepository" mdbInputDirective
+         class="form-control mb-4" placeholder="Data repository">
+     <!-- Data acession number -->
+  	Data acession number*:<input type="text" formControlName="submissionFormDataAcessionNumber" id="defaultSubmissionFormDataAcessionNumber" mdbInputDirective
+         class="form-control mb-4" placeholder="Data acession number">
+         <!-- Repository password (if needed) -->
+  	 Repository password (if needed):<input type="text" formControlName="submissionFormRepositoryPassword" id="defaultSubmissionFormRepositoryPassword" mdbInputDirective
+         class="form-control mb-4" placeholder="Repository password">
+  	<!-- Message -->
+  	<div class="form-group">
+    	Message*:<textarea formControlName="submissionFormMessage" class="form-control rounded-0" mdbInputDirective id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+  	</div>
+
+  	<!-- Copy -->
+  	<div class="custom-control custom-checkbox mb-4">
+    	<input formControlName="submissionFormCopy" type="checkbox" class="custom-control-input" id="defaultSubmissionFormCopy">
+    	<label class="custom-control-label" for="defaultSubmissionFormCopy">Send me a copy of this submission</label>
+  	</div>
+
+  	<!-- Send button -->
+  	<button mdbBtn color="info" outline="true" block="true" class="btn btn-primary z-depth-0 my-4 waves-effect" mdbWavesEffect type="submit" [disabled]="disabledSubmitButton">Send</button>
+
+</form>
+<!-- Default form contact -->
+</div>

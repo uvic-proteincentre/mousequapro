@@ -1,0 +1,43 @@
+<div [hidden]="geneExpDataStatus">
+        Wait! We are pulling Gene Expression Data....
+</div>
+
+<div class="container-fluid">
+	<div *ngIf="foundHits > 0">
+		<div *ngIf="geneExplistlen > 0">
+            <div id="myDivGeneExp"></div>
+            <br>
+            <table  id="dataTables-wrkld-geneExp" datatable [dtOptions]="dtOptions" class="display cell-border" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                      <th></th>
+                      <th>UniProtKB Accession</th>
+                      <th>Protein</th>
+                      <th>Biological Matrix</th>
+                      <th>Mean Gene Expression(RPKM)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let items of geneExplist">
+                        <td></td>
+                        <td>{{items[0]}}</td>
+                        <td>{{items[1]}}</td>
+                        <td>{{items[2]}}</td> 
+                        <td>{{items[3]}}</td>
+
+                     </tr>
+                </tbody>
+            </table>
+            <p>Data source:<a href="https://www.ncbi.nlm.nih.gov/gene"><strong>NCBI</strong> </a></p>
+		</div>
+
+		<div *ngIf="geneExplistlen == 0">
+			 <p>No Gene Expression data matched with your search criteria.</p>
+		</div>
+	</div>
+	<div *ngIf="foundHits == 0">
+		 <p>No Gene Expression data matched with your search criteria.</p>
+	</div>
+
+</div>

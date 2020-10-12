@@ -1,0 +1,107 @@
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fff"
+type = "ball-atom"
+fullScreen = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+
+<div class="container-fluid">
+  <div *ngIf="foundHits > 0">
+    <div *ngIf="conclistlen > 0">
+            <br>
+            <div class="datagrid">
+              <table>
+                <thead>
+                  <tr>
+                    <th>UniProtKB accession</th>
+                    <th>Protein</th>
+                    <th>Peptide sequence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td *ngFor="let items of protList">
+                      {{items}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <br>
+
+              <select [(ngModel)]="selected" (change)='onOptionsSelected($event)' *ngIf="plotlyData.length > 0" >
+                <option *ngFor="let opt of plotDataOptions" [ngValue]="opt"> {{ opt.name }} </option>
+              </select>
+
+            <br>
+            <div id="myDivConc" style="width: 100%; height: 100%;"></div>
+            <br>
+            <div>
+              <table  id="dataTables-wrkld-concentration" datatable [dtOptions]="dtOptions" class="display cell-border" cellspacing="0" width="100%">
+                  <thead>
+                      <tr>
+                        <th></th>
+                        <th>UniProtKB accession</th>
+                        <th>Protein</th>
+                        <th>Peptide sequence</th>
+                        <th>Mutant</th>
+                        <th>Biological matrix</th>
+                        <th>Strain</th>
+                        <th>Sex</th>
+                        <th>Sample Total Protein Mean Content.<sup>+</sup><br> </th>
+                        <th>Mean Conc.*<br> </th>
+                        <th>Min Conc.*<br></th>
+                        <th>Max Conc.*<br></th>
+                        <th>Nr. samples (Quantified/Measured)<br> </th>
+                        <th>Plot Name <br> </th>
+                        <th>Plot Data <br> </th>
+                        <th>Sample LLOQ and ULOQ Based Plot Data<br> </th>
+                        <th>Sample LLOQ<br> </th>
+                        <th>ULOQ<br> </th>
+                      </tr>
+                  </thead>
+
+                  <tbody>
+                      <tr *ngFor="let items of conclist">
+                          <td></td>
+                          <td>{{items[15]}}</td>
+                          <td>{{items[16]}}</td>
+                          <td>{{items[17]}}</td> 
+                          <td>{{items[1]}}</td>
+                          <td>{{items[2]}}</td>
+                          <td>{{items[3]}}</td>                                    
+                          <td>{{items[4]}}</td>
+                          <td>{{items[7]}}</td>
+                          <td>{{items[6]}}</td>
+                          <td>{{items[9]}}</td>
+                          <td>{{items[12]}}</td>
+                          <td>{{items[5]}}</td>
+                          <td>{{items[18]}}</td>
+                          <td>{{items[19]}}</td>
+                          <td>{{items[20]}}</td>
+                          <td>{{items[21]}}</td>
+                          <td>{{items[22]}}</td>
+
+                       </tr>
+                  </tbody>
+              </table>
+            </div>
+            <div>
+              <p>+Unit-{{sampleConcUnit}}</p>
+              <p>*Unit-fmol target protein/µg extracted protein</p>
+            </div>
+    </div>
+
+    <div *ngIf="conclistlen == 0">
+       <p>No Concentration data matched with your search criteria.</p>
+    </div>
+  </div>
+  <div *ngIf="foundHits == 0">
+     <p>No Concentration data matched with your search criteria.</p>
+  </div>
+
+</div>

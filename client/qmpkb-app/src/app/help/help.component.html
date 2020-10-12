@@ -1,0 +1,131 @@
+<app-navbar2></app-navbar2>
+<div class="container main-container">
+
+<div class="row-fluid spaced-bottom">
+<div class="span12">
+<div align="justify"> 
+
+<h1>Help</h1>
+	<p>Quantitative Mouse Proteomics Knowledgebase (MouseQuaPro) is Web-based application that hosts experimental data on protein abundances in various mouse tissues measured by mass spectrometry-based targeted MRM proteomics.</p>
+	<p>MouseQuaPro is hosted at the Proteomics Centre of the University of Victoria and is publicly and freely available via the <a href="/"><b>{{ baseUrl }}</b></a>.</p>
+	<p>Check our other bioinformatics resources at <a href="http://bioinformatics.proteincentre.com/">Bioinf@UVicPC</a>. For any question, injury, or feedback, please feel free to contact us bioinformatics@proteincentre.com.</p>
+
+<hr>
+</div>
+</div>
+</div>
+
+<h1>How to use MouseQuaPro</h1>
+<ol>
+	<li><a href="/help#searching" (click)="gethref($event, 'searching')">Searching</a></li>
+	<li><a href="/help#result" (click)="gethref($event, 'result')">Results</a></li>
+	<li><a href="/help#submission" (click)="gethref($event, 'submission')">Data submission</a></li>
+	<li><a href="/help#implementation" (click)="gethref($event, 'implementation')">MouseQuaPro Implementation</a></li>
+<!-- 	<li><a href="/help#cite" (click)="gethref($event, 'cite')">How to cite MouseQuaPro?</a></li> -->
+</ol>
+
+<div class="row-fluid spaced-bottom">
+<div class="span12">
+<div align="justify"> 
+<h2 id="searching">Searching</h2>
+	<p>
+	MouseQuaPro supports basic and advanced search queries, as well as filtering and retrieving search results via the Web interface or using the dedicated API. 
+	</p>
+	<h3> Default search </h3>
+	<p>
+	In the default search option that is available at the front page of MouseQuaPro, users can combine multiple search criteria and terms together to make their search specific (see Figure 1). In addition, it is also possible to search to multiple terms in the same category, like a list of protein accession numbers by separating these with new line (for example by copy-paste from an Excel column), or by a vertical bar (for example A6X935|O08742). By selecting one or more fields, users can restrict the search space and make it faster to retrieve the results. <b><span style="color:red">Users are advised to always use the default search option to make the search more focused and faster.</span></b>
+	</p>
+	<br>
+	<img src="/static/our_static/img/defaultSearch.png" style="width: 75%; height: 80%;">
+	<br>
+	<i>Figure 1. Default search in MouseQuaPro</i>
+	<p>The user has the possibility to search the peptide assays in MouseQuaPro using own protein sequences. This can be done by uploading the sequences in the general protein (AA) FASTA format. For example </p>
+	<div style="width:100%; ">
+	<pre style="white-space:normal; width:50%; ">
+	>sp|P02650|APOE_RAT Apolipoprotein E OS=Rattus norvegicus OX=10116 GN=Apoe PE=1 SV=2
+	<br>
+	MKALWALLLVPLLTGCLAEGELEVTDQLPGQSDQPWEQALNRFWDYLRWVQTLSDQVQEE
+	<br>
+	LQSSQVTQELTVLMEDTMTEVKAYKKELEEQLGPVAEETRARLAKEVQAAQARLGADMED
+	<br>
+	LRNRLGQYRNEVNTMLGQSTEELRSRLSTHLRKMRKRLMRDADDLQKRLAVYKAGAQEGA
+	<br>
+	ERGVSAIRERLGPLVEQGRQRTANLGAGAAQPLRDRAQALSDRIRGRLEEVGNQARDRLE
+	<br>
+	EVREQMEEVRSKMEEQTQQIRLQAEIFQARIKGWFEPLVEDMQRQWANLMEKIQASVATN
+	<br>
+	SIASTTVPLENQ
+	</pre>
+	</div>
+	<p>
+	MouseQuaPro will check and report the presence of peptide assays in the user's protein sequences and report them in three categories. “Present and unique” within the user's protein sequences, “Present but not unique”, and “Not present”. Ideally, the user limits the search space by using additional search fields with required terms when using this option (like limiting the search to a strain, tissue, and specific pathway).
+	</p>
+
+	<h3>Basic search</h3>
+	<p>
+	Users can perform simple searches using the basic search box that is available on right top in the navigation bar on all pages of MouseQuaPro (see Figure 2). Users can use search term, like– partial – protein name (e.g. Afamin), UniProtKB accession (e.g. O89020), gene name (e.g. Afm), Subcellular localization (e.g. Secreted), peptide sequence (e.g. AAPITQYLK), Molecular pathway(s) name (e.g. Complement and coagulation cascades), Involvement in disease name (e.g. Adiponectin deficiency(ADPND)), GO ID (e.g. GO:0008015), GO term (e.g. blood circulation), GO aspects (e.g. Biological Process), Drug associations ID (e.g. DB05202) , Strain (e.g. NODSCID), Mutant (e.g. Wild), or Panel (e.g. Plasma-1) or Sex (e.g. Male) or Biological matrix (e.g. Mouse Plasma) in the search field, and then pressing 'submit'. 
+	</p>
+	<br>
+	<img src="/static/our_static/img/basicSearch.png" style="width: 75%; height: 80%;">
+	<br>
+	<i>Figure 2. Navigation bar with basic search field.</i>
+
+<h2 id="result">Result page</h2>
+	<p>
+	Once the search results are on screen, the user can add filters to each column. The results are organized in a simple data table with protein entries in rows. Each row belongs to one protein and reports the peptide assays used/available, the tissues in which the protein concentration was determined, the human ortholog, whether the assay is suitable for the human ortholog, subcellular localization, involvement in biological pathways, associated gene ontology terms, involvement in disease, and association with drugs. An example of the result page with the search term “apolipoprotein” is illustrated in the Figure 3 and can be found using this link: <b><code>{{ baseUrl }}/results?searchterm=apolipoprotein</code></b>
+	</p>
+	<br>
+	<img src="/static/our_static/img/resultpage.png" style="width: 75%; height: 80%;">
+	<br>
+	<i>Figure 3. Data table of the search result with multiple protein entries in the result page (here with the search term "apolipoprotein")</i>
+
+	<h3>Summary statistics</h3>
+	<p>
+	At the bottom of the result page is summary statistics that report on how the results related to the user search term(s) are related to tissues, pathways, gene ontologies, sub cellular localization, and dieses. MouseQuaPro usually report the top 10 in each of these categories except of the tissue in which it report summary statistics numbers on all tissues in the knowledgebase. An example of the summary results obtained with the search term “apolipoprotein” is included in Figure 4 below.
+	</p>
+	<p>
+	The plot in the summary statistics are interactive and are associated with filtering the column of the results data table. For example if the user wishes to see from the results only those assays measured in a specific tissue like “heart”, or associated with a selected disease like “Bladder Neoplasm”, one can select these directly in the summary statistics plots by clicking at the respective bar in the bar plot. The users can alternatively also insert the filter term they are interested in in the column filter boxes at the top of the data table. 
+	</p>
+	<br>
+	<img src="/static/our_static/img/SummaryResult.png" style="width: 75%; height: 80%;">
+	<br>
+	<i>Figure 4. Summary statistics of the search results.</i>
+	<h3>Detailed view page</h3>
+	<p>
+	The detailed view page is protein-specific and includes multiple sections. It has sections on the assay details, measured concentration in tissues, gene expression (from NCBI), and protein features and annotations. Further sections are related to subcellular localization, biological pathways, associated gene ontology terms, known involvement in disease, and known association with drugs. All information in the different section can be downloaded using the corresponding download button.  The detailed view page features various interactive plots in the different sections that allow users to investigate the various aspects of the protein and measured concentrations in tissues. For example, in the concentration section users can view boxplots showing all concentrations and determined dynamic ranges according to tissue, strain, and sex. In the protein features section, the user can view the available protein annotation including variations, post-translational modifications, and other features like domains and chains. We adapted ProtVista (Watkins, et al., 2017) to include the surrogate peptide used in our assay. Because human proteins are better annotated than their mouse orthologs, we chose to display the annotations for the mouse protein alongside its human ortholog. Figure 5 and Figure 6 show sections of the detailed view page. 
+	</p>
+	<br>
+	<img src="/static/our_static/img/concentration.png" style="width: 75%; height: 80%;">
+	<br>
+	<i>Figure 5. An example of the assay and concentration sections from the detailed view page (of apolipoprotein E). Interactive boxplots of the measured protein concentrations in different tissues, strains, and sexes allow the user to have in depth views the concentration data collected.</i>
+	<br>
+	<img src="/static/our_static/img/protvista.png" style="width: 75%; height: 80%;">
+	<br>
+	<i>Figure 6. An example of the features section from the detailed view page (of apolipoprotein E). The interactive plot allows zooming in various part of the protein and investigating known annotation like domain, sites, PTM, and variant association with disease.</i>
+
+<h2 id="submission">Data submission</h2>
+	<p>
+	MouseQuaPro accepts data submission by sharing the raw data, on which we will run our analysis pipeline and then it will be automatically included. As we are not a raw data hosting service like PRIDE, ProteomExhange, or Panorama Web, our intention is to handle submission to MouseQuaPro after depositing the raw data in one of these open proteomics data repositories, which we will download, process with our pipeline, and include it in MouseQuaPro. Please use the data submission form to inform us about the data and we will get in contact with you as soon as we can download the raw data.
+	</p>
+
+<h2 id="implementation">MouseQuaPro Implementation</h2>
+	<p>
+	MouseQuaPro is written mainly in <a href="http://www.python.org/">Python 2.7</a>. The backend API and Web interface were developed in <a href="https://djangoproject.com"> Django 1.11 </a> and <a href="https://angular.io/"> Angular 7.0 </a> framework respectively. The search functionalities were implemented using <a href="https://www.elastic.co/"> Elasticsearch 6.2</a> as the search backend engine.MouseQuaPro integrates protein concentrations with external data from <a href="https://www.uniprot.org/"> UniProt(Boutet, et al., 2007)</a>, <a href='https://www.kegg.jp' ref='external'>Kyoto Encyclopedia of Genes and Genomes KEGG (Kanehisa and Goto, 2000)</a>, <a href='https://www.ncbi.nlm.nih.gov' ref='external'>National Center for Biotechnology Information NCBI(Brown, et al., 2015)</a>, <a href='https://www.ebi.ac.uk/QuickGO/' ref='external'>QuickGO(Binns, et al., 2009)</a>, and <a href='https://www.disgenet.org' ref='external'>DisGeNET(Pinero, et al., 2017)</a>. The integration happens in real time by consuming the corresponding Web services of the various resources. <a href='https://developers.google.com/chart/' ref='external'>Google charts</a> and <a href='https://plot.ly' ref='external'>PlotlyJS</a> were used for visualization. The REST API was built using  <a href='https://www.django-rest-framework.org/' ref='external'>Django REST framework</a>. <a href='https://swagger.io/tools/swagger-ui/' ref='external'>Swagger UI</a> was used to generate interactive API documentations.
+	</p>
+	<p>
+		Source code for this software is accessible using link : <a href="https://github.com/uvic-proteincentre/mousequapro" ref='external'>MouseQuaPro</a>
+	</p>
+	<h3>Question and inquires</h3>
+	<p>
+	If you have any question, inquiry, or suggestion, please send us an email on bioinformatics@proteincentre.com.
+	</p>
+<!-- <hr>
+<h2 id="cite">Cite</h2>
+	<p>
+      Example
+    </p> -->
+
+</div>
+</div>
+</div>
+</div>

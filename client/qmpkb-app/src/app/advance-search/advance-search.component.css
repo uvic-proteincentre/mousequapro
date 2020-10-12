@@ -1,0 +1,50 @@
+/*.row1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}*/
+
+.column1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.column2 {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#addSearch #addButton{
+	position: relative;
+	left:50px;
+}
+
+#addSearch  #advanceSubmitButton {
+	position: relative;
+	left:100px;
+}
+
+
+p {
+  font-family: Lato;
+}
+
+.alert  {
+  position: fixed;
+  padding-top:51px;
+  right:25%;
+  left: 25%;
+  border:1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  padding: 2rem;
+  background: #fff;
+  color: #f65656;
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+  transition:  all 0.2s ease-in-out;
+  opacity: 0;
+}
+.visible {
+  opacity: 1;
+  transform: translateY(1.25rem);
+}

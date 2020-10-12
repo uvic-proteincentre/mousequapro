@@ -1,0 +1,21 @@
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fff"
+type = "ball-atom"
+fullScreen = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+
+<app-navbar2></app-navbar2>
+<div class="container-fluid">
+	<div *ngIf="reachable ==true">
+        <table datatable [dtOptions]="dtOptions" class="display cell-border" cellspacing="0" width="100%" id="pepUnqness">           
+        </table>
+	</div>
+	<div *ngIf="reachable !==true">
+		<p>This data entry is not available due to technical error in connecting to an external data resource. Please try again later.</p>
+	</div>
+</div>

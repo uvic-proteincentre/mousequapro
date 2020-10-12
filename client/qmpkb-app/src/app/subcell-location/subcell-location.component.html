@@ -1,0 +1,10 @@
+<div [hidden]="subCellDataStatus">
+        Wait! We are pulling Subcellular localization Data....
+</div>
+<div class="container-fluid">
+	<input id="myInputSubCell" type="text" placeholder="Search.." style="width: 20%;height: 10px;">
+    <div *ngIf="filterSubCellStatus == false">{{ subcellInputData }}</div>
+
+    <div *ngIf="filterSubCellStatus == true">{{ filterredSubcell }}</div>
+</div>			
+

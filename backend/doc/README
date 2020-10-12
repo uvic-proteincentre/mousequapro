@@ -1,0 +1,58 @@
+The code of MouseQuantProKB supports the paper: 
+****Name of paper
+######################################################################################
+
+MouseQuantProKB backend tool created in virtual environment and  based on flat file concept.
+######################################################################################
+
+There are number of dependencies MouseQuantProKB relies on:
+
+* biopython - http://biopython.org/wiki/Main_Page
+* Django version 1.11.16
+* Django registration form and redux registration form
+* Django Crispy form
+* Bootstrap
+* django-ipware
+* BioPython
+* Google chrome
+To install all package(s) run following command at 'path/QMKBdjanular/backend':
+* pip install -r requirements.txt
+############################################################
+
+Following files are required to run MouseQuantProKB:
+
+* 'ReportBook_mother_file.csv' is master file which is stored in 'mappermotherfile' directory
+* 'humsavar.txt' file conatins disease information related to human which is stored in 'UniDiseaseInfo' directory
+* 'gene_ontology.1_2.obo' and 'goa_uniprot_all.gaf' files conatin GO information related to human and mouse which are stored in 'quickGOAData' directory
+
+#########################################################################################################################################################################
+
+Following folders are required to store data:
+
+#########################################################################################################################################################################
+
+To run Django in differenet IP address during development:
+python manage.py runserver 0.0.0.0:8000
+
+After creating new model run following command:
+python manage.py makemigrations
+python manage.py migrate
+
+After adding static file run following command:
+python manage.py collectstatic
+
+After creating new table in database run following command:
+python manage.py syncdb
+
+##########################################
+
+#########################################################################################################################################################################
+
+Restful service to fecth data:
+User can access data programmatically in a following way:
+ 
+
+Also user can use wget command from terminal to fetch data.
+##########################################
+
+

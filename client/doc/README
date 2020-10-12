@@ -1,0 +1,33 @@
+The code of MouseQuantProKB supports the paper: 
+****Name of paper
+######################################################################################
+
+MouseQuantProKB frontend tool created in using following steps:
+######################################################################################
+
+This is a step-by-step setup guide to setup Angular v.7.XX, the latest version of Angular 2, on your computer. Adapted from docs on Angular CLI.
+There are number of dependencies MouseQuantProKB relies on:
+
+1. Install Node.js from here (https://nodejs.org/en/download/)
+After downloading Node.js, the node package manager (npm) should automatically be installed. Test it out by doing:
+
+* npm --version
+
+2. Install Angular CLI visa npm
+
+* npm install -g @angular/cli
+
+3. Run npm install 
+* To run this command, user need to go the 'path/qmpkb-app' and the command will install all necessary package(s) for client side
+
+4. To test the client side at http://localhost:4200,user can run following command:
+* ng serve
+5. In order to deploy that user needs to run following command:
+
+* ng build --prod --output-path path/QMKBdjanular/backend/src/static/ang/ --watch --output-hashing none
+6. Generate new component
+* ng g component name
+
+##########################################
+
+

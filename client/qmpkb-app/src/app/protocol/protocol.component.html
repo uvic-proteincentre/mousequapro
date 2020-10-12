@@ -1,0 +1,44 @@
+<app-navbar2></app-navbar2>
+<div class="container main-container">
+	<div class="row-fluid spaced-bottom">
+		<div class="span12">
+			<div align="justify"> 
+				<h1>Homogenization and Digestion of Mouse Tissue Samples</h1>
+				<br>
+				<i>Note: go directly to Protein Quantitation by Bradford Assay if working with biofluids (for example, blood plasma) rather than tissues.</i>
+				<br>
+				<br>
+				<h2>Tissue Homogenization:</h2> 
+				<p>
+					Record the weight of each frozen tissue sample and transfer to 2 mL tubes (Protein LoBind, Eppendorf). Lyophilize tissues for a minimum of 24 hrs. Add 3 x 3.2 mm stainless steel beads and homogenize the lyophilized tissue on a Retsch MM 400 homogenizer using 3 x 1 min intervals at 27 Hz, with 1 min rest periods in between each cycle. If intact tissue pieces remain after 3 cycles, repeat homogenization step until sample appears completely homogenized, or until 9 cycles have been completed. Rehydrate homogenized tissue with 4.5 M urea, 300 mM Tris, pH 8.0 at a ratio of 1:4 (sample to buffer, w/v) and vortex until dissolved. Degrade DNA with benzonase if required. Centrifuge homogenates to pellet any insoluble material prior to acetone precipitation.
+				</p>
+				<h2>Acetone Precipitation:</h2>
+				<p>
+					Add ice cold acetone at a ratio of 1:5 (sample to acetone, v/v),vortex well and incubate at -20 °C for 1.5 hrs. Centrifuge samples in a chilled centrifuge at 60,000 rcf for 5 min to pellet proteins. Decant acetone supernatant and resuspend the pellet in 9 M urea, 300 mM Tris, pH 8.0 at a volume of 0.5 – 2 x initial sample volume. Centrifuge samples at max speed for 10 min at room temperature to pellet any remaining insoluble debris. If there is a pellet, transfer the soluble fraction to a new tube.
+				</p>
+				<h2>Protein Quantitation by Bradford Assay:</h2>
+				<p>
+					Prepare a pooled control sample by combining 15 μL of each tissue sample. This pool will be aliquoted, digested, and analyzed in 6 replicates across the plate. Prepare a Bovine Serum Albumin (BSA) standard curve in water ranging from 0.2 - 1.4 μg/μL. Dilute individual and pooled control tissue samples so their concentration falls within the dynamic range of the BSA curve. Incubate diluted samples and standard curve with Bradford Reagent according to the manufacturer’s instructions. Measure the absorbance at 595 nm of the BSA standards (in duplicates) and samples (one replicate per sample). Determine the protein content of each tissue sample according to the BSA curve, ensuring back-calculated concentrations of the BSA standards are within 15 % of the expected concentration. Using this protocol, most mouse tissues have a concentration of approximately 10 μg protein per μL homogenate. Mouse plasma typically has a concentration of approximately 40 μg/μL plasma.
+				</p>
+				<h2>Trypsin Digestion:</h2>
+				<p>
+					Randomize and aliquot 100 μg of each tissue sample to a 96 well plate, ensuring the pooled control is distributed throughout. To create the matrix for the standard curve and curve QC samples, prepare 5 μg/μL BSA solution in 100 mM Tris (biofluid digest) or 9 M Urea (tissue digest) and aliquot to the 96 well plate. Reduce the protein disulfide bonds by incubating the sample for 30 min at 37 °C in Dithiothreitol(20 mM) and alkylate the cysteine residues by incubation for 30 min at room temperature in the dark in Iodoacetamide (40 mM). Dilute the urea concentration to <1M with 100 mM Tris prior to proteolysis by addition of TPCK-treated trypsin (Worthington) at a 10:1 (substrate to enzyme) ratio. Incubate samples for 18 hrs at 37°C while shaking at 500 rpm. After incubation, inactivate trypsin by adding 10 % formic acid (1 % final concentration in digest sample, v/v).
+				</p>
+				<h2>Addition of Peptide Standards and Desalting:</h2>
+				<p>
+					Spike each digested tissue sample with stable isotope labeled standard (SIS) peptides at 100 x LLOQ of the peptide assays. To prepare the standard curve and curve QC samples, prepare an 8 level dilution series of unlabelled, Light peptide standards from 1 to 1000 x the LLOQ of the peptide assays. Prepare three curve QC samples using the Light peptide mixture at 4 x, 40 x and 400 x the LLOQ. Using the trypsin digested BSA as the matrix, spike each curve and QC dilution, with the corresponding SIS peptides again spiked at 100 x LLOQ.
+					<br>
+					Desalt and concentrate all spiked digests by solid phase extraction (Oasis HLB, Waters) according to manufacturer’s instructions. Lyophilize the eluted samples and once dry, resuspend in 0.1 % formic acid to 1 μg/μL.
+				</p>
+				<h2>LC-MRM/MS:</h2>
+				<p>
+					Targeted multiple reaction monitoring (MRM) is performed on an Agilent 6495 Triple Quadrupole mass spectrometer interfaced with a 1290 Infinity UHPLC system by a Jet Stream ESI source (Agilent Technologies). Inject 20 μg on column (20 μL of 1 μg/μL) of each tissue sample and 10 μg (10 μl of 1 μg/μL) of each standard curve and curve QC sample. Resolve the peptide samples using a Zorbax Eclipse Plus RP-UHPLC column (2.1 x 150 mm, 1.8 μm particle diameter; Agilent Technologies) over a 56 min, multi-step gradient (aqueous phase: 0.1 % formic acid in water; mobile phase: 0.1 % formic acid in acetonitrile) at a flow rate of 0.4 mL/min. Maintain the column temperature at 50 °C. During the quantitative analysis, monitor 1- 3 transitions per peptide over a 900 ms cycle with 1 min detection windows and a minimum of 9 ms dwell times.
+				</p>
+				<h2>Quantitative Analysis:</h2>
+				<p>
+					Inspect all peaks with Skyline-daily Quantitative Analysis software (University of Washington) to ensure accurate peak selection and integration of both the SIS and Light peptide peaks. Analyze the pooled sample for the consistency of sample preparation and MS analysis across the 96 well plate. For each peptide target, confirm that the accuracies of the standard curve and curve QC samples are within 80% - 120 % using 1/x<sup>2</sup> regression weighting. For the measurement to be valid, at least 4 curve standards must meet these criteria. For the curve QCs, 1/3 must pass per level, with no more than 3 curve QCs failing across all included levels. Use the standard curve to calculate the endogenous peptide concentration (and therefore protein concentration) in fmol/μg digest. Further calculation may be performed to determine fmol peptide per weight of tissue, if desired.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

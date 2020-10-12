@@ -1,0 +1,25 @@
+<div [hidden]="disDataStatus">
+        Wait! We are pulling Disease Data....
+</div>
+<div class="container-fluid">
+    <br>
+    <ul class="tab">
+      <button class="tablinksdisease active" (click)="openTabsDis($event, 'disGen')">Involvement in disease-Human(DisGeNET)</button>
+      <button class="tablinksdisease"  (click)="openTabsDis($event, 'uniDis')">Involvement in disease-Human(UniProt)</button>
+    </ul>
+
+    <div id="disGen" class="tabcontentdisease">
+        <input id="myInputDisGenNet" type="text" placeholder="Search.." style="width: 20%;height: 10px;">
+        <div *ngIf="filterHumanDiseaseDisGeNetStatus == false" [innerHTML]="humanDiseaseDisGeNet"></div>
+
+        <div *ngIf="filterHumanDiseaseDisGeNetStatus == true" [innerHTML]="filterredHumanDiseaseDisGeNet"></div>
+    </div>
+
+    <div id="uniDis" class="tabcontentdisease">
+        <input id="myInputUniProt" type="text" placeholder="Search.." style="width: 20%;height: 10px;">
+        <div *ngIf="filterHumanDiseaseUniProtStatus == false" [innerHTML]="humanDiseaseUniProt"></div>
+
+        <div *ngIf="filterHumanDiseaseUniProtStatus == true" [innerHTML]="filterredHumanDiseaseUniProt"></div>
+    </div>
+
+</div>

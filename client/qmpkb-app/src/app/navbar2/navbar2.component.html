@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" (click)="isCollapsed=! isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><img [src]='qmpkbLogoImage' class="img-responsive"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" [collapse]="isCollapsed">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/" data-toggle="tooltip" data-placement="bottom" title="Home page"><i class="fa fa-home fa-fw"></i>&nbsp;Home</a></li>
+        <li><a href="/docapi/" data-toggle="tooltip" data-placement="bottom" title="Application programming interface"><i class="fa fa-cog fa-fw"></i>&nbsp;API</a></li>
+        <li><a href="/protocol" data-toggle="tooltip" data-placement="bottom" title="Sample Preparation Protocol"><i class="fa fa-flask fa-fw"></i>&nbsp;Protocol</a></li>
+        <li><a href="/submission"><i class="fa fa-bank" aria-hidden="true"></i>&nbsp;Data submission</a></li>
+        <li><a href="/help" data-toggle="tooltip" data-placement="bottom" title="Help page"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Help</a></li>
+<!--         <li><a href="/contact"><i class="fa fa-envelope fa-fw"></i>&nbsp;Contact</a></li> -->
+        <li>
+          <app-basic-search-without-example></app-basic-search-without-example>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

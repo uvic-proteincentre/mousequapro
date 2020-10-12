@@ -1,0 +1,29 @@
+<div class="container main-container">
+  <h2 class ='text-align-center' style="color: black;"> For any inquiry, please contact us using following contact form or email us at bioinformatics@proteincentre.com! </h2>
+  <br>
+<!-- Default form contact -->
+<form class="text-center border border-light p-5" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+	<p class="h4 mb-4">Contact us</p>
+	<!-- Name -->
+  	<input type="text" formControlName="contactFormName" id="defaultContactFormName" mdbInputDirective class="form-control mb-4" placeholder="Name">
+  	<!-- Email -->
+  	<input type="email" formControlName="contactFormEmail" id="defaultContactFormEmail" mdbInputDirective
+         class="form-control mb-4" placeholder="E-mail">
+
+  	<!-- Message -->
+  	<div class="form-group">
+    	<textarea formControlName="contactFormMessage" class="form-control rounded-0" mdbInputDirective id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+  	</div>
+
+  	<!-- Copy -->
+  	<div class="custom-control custom-checkbox mb-4">
+    	<input formControlName="contactFormCopy" type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+    	<label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
+  	</div>
+
+  	<!-- Send button -->
+  	<button mdbBtn color="info" outline="true" block="true" class="btn btn-primary z-depth-0 my-4 waves-effect" mdbWavesEffect type="submit" [disabled]="disabledSubmitButton">Send</button>
+
+</form>
+<!-- Default form contact -->
+</div>

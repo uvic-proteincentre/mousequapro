@@ -1,0 +1,177 @@
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fff"
+type = "ball-atom"
+fullScreen = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+
+<app-navbar3></app-navbar3>
+<p *ngIf="queryResPath !==undefined" class ='text-align-center'>You searched for: <strong>{{query}}</strong></p>
+<p *ngIf="queryResPath !==undefined" class ='text-align-center'> <b>Total {{totallist[1]}} assay(s) corresponding to {{totallist[0]}} protein(s) in MouseQuaPro</b> 
+</p>
+
+<br>
+<table id="dataTables-wrkld-proteincentric" class="display cell-border" cellspacing="0" width="100%" datatable [dtOptions]="dtOptions" *ngIf="queryResPath !==undefined">
+    <thead>
+        <tr>
+            <th>Protein</th>
+            <th>Gene</th>
+            <th>UniProtKB accession</th>
+            <th>Peptide assay</th>
+            <th>Strain</th>
+            <th>Mutant</th>
+            <th>Biological matrix</th>
+            <th>Sex</th>
+            <th>Gene expression</th>
+            <th>Human ortholog</th>
+            <th>UniProtKB accession human ortholog</th>
+            <th>Peptide present in human ortholog</th>
+            <th>Subcellular localization</th>
+            <th>Involvement in pathways</th>
+            <th>Go term associations</th>
+            <th>Involvement in disease</th>
+            <th>Drug associations</th>
+        </tr>
+        <tr>
+            <th  class="filterhead"><input class="column_search" id="mProt" type="text" placeholder="" name="" value="{{mProtVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mGen" type="text" placeholder="" name="" value="{{mGenVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mUKB" type="text" placeholder="" name="" value="{{mUKBVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mPepass" type="text" placeholder="" name="" value="{{mPepassVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mStr" type="text" placeholder="" name="" value="{{mStrVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mKout" type="text" placeholder="" name="" value="{{mKoutVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mBioTis" type="text" placeholder="" name="" value="{{mBioTisVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mGender" type="text" placeholder="" name="" value="{{mGenderVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mGenExp" type="text" placeholder="" name="" value="{{mGenExpVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="hProt" type="text" placeholder="" name="" value="{{hProtVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="hUKB" type="text" placeholder="" name="" value="{{hUKBVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="hPresPep" type="text" placeholder="" name="" value="{{hPresPepVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mSCell" type="text" placeholder="" name="" value="{{mSCellVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mPath" type="text" placeholder="" name="" value="{{mPathVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="mGO" type="text" placeholder="" name="" value="{{mGOVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="hDis" type="text" placeholder="" name="" value="{{hDisVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+            <th  class="filterhead"><input class="column_search" id="hDrug" type="text" placeholder="" name="" value="{{hDrugVal}}" style="padding-left: 2px;padding-right: 0;"/></th>
+        </tr>
+    </thead>
+</table>
+<br>
+<button *ngIf="queryResPath !==undefined" class ='text-align-center' (click)="clearFilterSearch()">Reset Filter</button>
+<app-download-result [downloadTermQuery]="downloadResultQuery"></app-download-result>
+<!-- <a [href]="downalodResPath" *ngIf="queryResPath !==undefined">Download Result</a> -->
+<div class="col-sm-4" *ngIf="queryResPath ==undefined" >
+     <p>No Peptide matched with your search criteria.</p>
+</div>
+
+<div *ngIf="foundHits > 10000">
+    (<font color="red">WARNING:</font> Resultset truncated at 10000 rows. To access all results please use <a target="_blank" href="/docapi/"> REST API service</a>.)
+</div>
+<!-- <br>
+<select *ngIf="plotlyData.length > 0" [(ngModel)] ='selectedLevel'>
+  <option *ngFor="let opt of plotDataOptions" [ngValue]="opt">{{opt.name}}</option>
+</select>
+<br>
+<div [hidden]="(selectedLevel.num ==1 || selectedLevel.num ==2)" id="myDivConc" style="position: relative;  height: 450px;" [style.width]="screenWidth"></div>
+<div [hidden]="(selectedLevel.num ==0 || selectedLevel.num ==2)" id="myDivConc2" style="position: relative; height: 450px;" [style.width]="screenWidth"></div>
+<div [hidden]="(selectedLevel.num ==0 || selectedLevel.num ==1)" id="myDivConc10" style="position: relative; height: 450px;" [style.width]="screenWidth"></div>
+<br> -->
+
+
+
+<div class="jumbotron" *ngIf="queryResPath !==undefined">
+    <p class ='text-align-center' style="padding: 8px;"><strong>Summary of results</strong></p>
+<!--     <button class="accordion" (click)="toggleAccordian($event)" style="padding: 8px;"><p class ='text-align-center'><strong>Summary of results</strong></p></button>
+    <div class="panel" style="background-color: #eee"> -->
+      <!-- <span class="tooltiptextLabel" style="visibility: hidden; border-width: 0; background-color: white; padding:10px;"></span> -->
+      <div class="row">
+<!--         <div class="container col-md-6" *ngIf="foldchangeLength > 0">
+            <b>Volcano Plot</b>
+            <br>
+            <app-fold-change [foldChangeResult]="foldchangeData"></app-fold-change>
+        </div> -->
+        <div class="container col-md-6" *ngIf="querybioMatData?.length > 0">
+            <b>The number of assay entries in search results according to the Biological matrix</b>
+            <br>
+            <div #chartDiv id="chart_div_matrix" style="width: 100%; height: 100%;" ></div>
+        </div>
+        <div class="container col-md-6" *ngIf="keggchart?.length > 0">
+            <b>Top 10 KEGG pathway coverage by search results</b>
+            <div #chartDiv id="chart_div_pathway" style="width: 100%; height: 100%;" ></div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+             <div class="col-md-6" *ngIf="updatedgo?.length > 0">
+               <b>Top 10 GO Terms covered by search results</b>
+               <br>
+                <div #chartDiv id="chart_div_GO" style="width: 100%; height: 100%;" ></div>
+            </div>
+            <div class="col-md-6" *ngIf="subcell?.length > 0">
+                <b>Top 10 Sub cellular locations covered by search results</b>
+                <br>
+                <div #chartDiv id="chart_div_subcell" style="width: 100%; height: 100%;" ></div>
+            </div>
+<!--             <div class="col-md-6" *ngIf="querystrainData?.length > 0">
+                <b>The number of assay entries in MouseQuaPro, strain</b>
+                <br>
+                <div #chartDiv id="chart_div_strain" style="width: 100%; height: 100%;" ></div>
+            </div> -->
+        </div>
+      <br>
+      <div class="row">
+            <div class="col-md-6"  *ngIf="humandisease?.length > 0">
+                <b>Top 10 Disease Association covered by search results</b>
+                <br>
+                <div #chartDiv id="chart_div_disease" style="width: 100%; height: 100%;" ></div>
+            </div>
+            <div class="col-md-6" *ngIf="unqisostat?.length > 0">
+                <b>Uniqueness and presence in isofroms</b>
+                <br>
+                <table datatable [dtOptions]="dtOptionssummarystatUnq" id="" border="1" class="summarystatUnq display cell-border"  cellspacing="0" width="100%">
+                     
+                    <thead>
+                        <tr style="text-align: center;">
+                            <td align="center"><b>Peptide uniqueness in proteome(%)</b></td>
+                            <td align="center"><b>Peptide is specific to one protein isoform(%)</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let items of unqisostat">
+                                <td align="center"> {{items[1]}}</td>
+                                <td align="center"> {{items[2]}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <br>
+                <table datatable [dtOptions]="dtOptionssummarystatUnq" id="" border="1" class="summarystatUnq display cell-border"  cellspacing="0" width="100%">
+                     
+                    <thead>
+                        <tr style="text-align: center;">
+                            <td align="center"><b>Number of assays that can be used for human (after validation)</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td align="center"> {{querynoOfHumanOrtholog}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <table datatable [dtOptions]="dtOptionssummarystatUnq" id="" border="1" class="summarystatUnq display cell-border"  cellspacing="0" width="100%">
+                     
+                    <thead>
+                        <tr style="text-align: center;">
+                            <td align="center"><b>Number of assays of proteins related to diseases (Human)</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td align="center"> {{querynoOfDiseaseAssProt}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<!--     </div> -->
+</div>

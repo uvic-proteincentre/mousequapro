@@ -1,0 +1,75 @@
+
+
+{% if user.is_authenticated %}
+<meta http-equiv="refresh" content="0;url=/">
+{% else %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="PeptideMapper database">
+		<meta name="author" content="Uvic proteincentre">
+
+		<link rel='shortcut icon' type='image/x-icon'  href='{% static "ang/assets/images/icon/favicon.ico" %}'/>
+
+		<title>Log In |MouseQuaPro</title>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'our_static/swagger_files/css/custom_swagger.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	</head>
+
+	<body>
+		  <!-- After Publication this condition block will be removed -->
+				<nav class="navbar navbar-default navbar-fixed-top">
+					<div class="container-fluid">
+						<div class="navbar-header">
+					  		<a class="navbar-brand" ><img src='{% static "ang/assets/images/logo/logo.png" %}' class="img-responsive"></a>
+						</div>
+				  	</div>
+				</nav>
+
+				<div class="container main-container">
+					{% load i18n %}
+					{% load crispy_forms_tags %}
+					{% block content %}
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<form method="POST" action=".">
+									<h1>Please login before accessing resource</h1>
+									{% csrf_token %}
+									{{ form|crispy }}
+									<input class="btn btn-default" type="submit" value='{% trans "Log in" %}'>
+									<input class="btn btn-default" type="hidden" value='{% trans "Log in" %}'>
+								</form>
+						
+							</div>
+						</div>
+					{% endblock %}
+				</div>
+
+				<script type="text/javascript" src="{% static 'ang/polyfills.js' %}"></script>
+				<script type="text/javascript" src="{% static 'ang/main.js' %}"></script>
+				<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+				<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+				<script src="{% static 'our_static/swagger_files/js/variance-noncommercial-standalone-f47ffcf.min.js' %}"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+				<script src="{% static 'our_static/swagger_files/js/ie10-viewport-bug-workaround.js' %}"></script>
+				<script src="{% static 'our_static/rest_framework_swagger/bundles/vendors.bundle.js' %}"></script>
+				<script src="{% static 'our_static/rest_framework_swagger/bundles/app.bundle.js' %}"></script>
+
+				<div class="navbar navbar-default navbar-fixed-bottom" style="padding-bottom:0px; min-height:0px">
+					<div class="container text-center" style="color: black;"> © <script type="text/javascript">document.write(new Date().getFullYear());</script> - Bioinf Proteomics Centre
+					</div>
+				</div>
+		</body>
+</html>
+{% endif %}
+

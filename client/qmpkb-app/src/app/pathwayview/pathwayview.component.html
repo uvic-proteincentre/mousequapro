@@ -1,0 +1,46 @@
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fff"
+type = "ball-atom"
+fullScreen = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+<app-navbar2></app-navbar2>
+<div class="alert" [class.visible]="alertIsVisible">
+  Oopps. No Results matched with your search criteria!
+</div>
+<div class="container-fluid" >
+	<div *ngIf="reachable ==true">
+		<div *ngIf="keggimagedictlen > 0">
+			<div *ngFor="let item of keggimagedict| keyvalue">
+                  <table>
+                    <div style="position: relative;" [style.width]="screenWidth">
+                        <br>
+                        <img src="http://www.kegg.jp{{item.value[0]}}"  name="pathwayimage" usemap="#mapdata" border="0" />
+                        <map name="mapdata">
+		                      <div *ngFor="let corddata of item.value[2]">
+		                  	    <area shape="{{corddata[0]}}"  coords="{{corddata[1]}}"  href="{{ corddata[2] }}" title="{{ corddata[3] }}" target="_blank"/>
+		                      </div>
+                        </map>
+                        <br>
+                        <pre>
+                          <h4>{{item.value[1]}}</h4>
+                          <p>Violet indicates the protein or gene that the user searched for in MouseQuaPro, while maroon indicates that the protein or gene is present in MouseQuaPro.All color-coded boxes are linked to the data table in MouseQuaPro via hyperlinks.Rectangular green boxes represent non-mapped genes/proteins in the pathway.</p>
+                          <p>Click this  <a target="_blank" href="{{keggurl}}" rel="external"><b>link&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></b> </a>to open the corresponding annotation page in KEGG, where you can explore the network in details.</p>
+                        </pre>
+                        <br>
+                    </div>
+                  </table>
+			</div>
+          <p>Data source:<strong>KEGG</strong> </p>
+		</div>
+		<div *ngIf="keggimagedictlen == 0">
+			 <p>No Data</p>
+		</div>
+	</div>
+	<div *ngIf="reachable !==true && alertIsVisible ==false">
+  		<p>This data entry is not available due to technical error in connecting to an external data resource. Please try again later.</p>
+  	</div>

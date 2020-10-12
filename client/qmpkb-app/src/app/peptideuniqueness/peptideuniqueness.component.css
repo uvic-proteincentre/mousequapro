@@ -1,0 +1,32 @@
+.my_button_space_class{
+    margin-right :20px; 
+}
+td.details-control {
+    text-align:center;
+    color:forestgreen;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+  text-align:center; 
+  color:red;
+}
+.td-limit {
+    max-width: 70px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+.gbuff {
+    margin-top:40px;
+    margin-bottom:20px;
+}
+.rotate {
+  transform:rotate(180deg);
+  transition:all 0.5s;
+}
+.rotate.in {
+  transform:rotate(1800deg);
+  transition:all 1.5s;
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "plotVennDiagram <- function(inputfilename){\n  diagramname<-paste(\"proteomeuniq\", \"png\", sep=\".\")\n  pepmaperdata<-read.csv(\"ReportBook_mother_file.csv\",check.names=F,header = T,sep=\"\\t\")\n  result<-list()\n  uniqprotyes<-c()\n  uniqprotno<-c()\n  presisoyes<-c()\n  presisono<-c()\n  for(i in 1:nrow(pepmaperdata)){\n    if (!is.na(pepmaperdata[i,6])){\n      uniqprotyes<-c(uniqprotyes,as.character(pepmaperdata[i,5]))\n    } else {\n      uniqprotno<-c(uniqprotno,as.character(pepmaperdata[i,5]))\n    }\n    if (!is.na(pepmaperdata[i,7])){\n      presisoyes<-c(presisoyes,as.character(pepmaperdata[i,5]))\n    } else {\n      presisono<-c(presisono,as.character(pepmaperdata[i,5]))\n    }  \n  }\n  result<-c(result,list(uniqprotyes))\n  result<-c(result,list(uniqprotno))\n  result<-c(result,list(presisoyes))\n  result<-c(result,list(presisono))\n  \n  names(result)<-c(\"Unique in protein (yes)\",\"Unique in protein (no)\",\"Present in isoforms (yes)\",\"Present in isoforms (no)\")\n  vp <- venn.diagram(result, fill = 2:5, alpha = 0.3, filename = NULL)\n  png(diagramname,res = 175, bg = \"#EEEEEE\",units = \"px\")\n  grid.draw(vp)\n  dev.off()\n}",
+    "created" : 1499195521509.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1288726114",
+    "id" : "CDA662A8",
+    "lastKnownWriteTime" : 1499197230,
+    "last_content_update" : 1499197230856,
+    "path" : "~/Desktop/djangoproject/peptidemapper/updatefile/devtest.R",
+    "project_path" : "devtest.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

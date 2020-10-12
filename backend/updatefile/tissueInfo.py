@@ -1,0 +1,22 @@
+unitDic={
+	'plasma':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/uL plasma)',' (fmol target protein/uL plasma)'],
+	'rbc':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/uL red blood cells)',' (fmol target protein/uL red blood cells)'],
+	'brain':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'skin':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'testes':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'eye':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'heart':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'liver caudate and right lobe':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'liver left lobe':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'lung':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'ovary':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'kidney':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'brown adipose':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'white adipose':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'epididymis':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'seminal vesicles':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'skeletal muscle':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'spleen':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'pancreas':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)'],
+	'salivary gland':[' (fmol target protein/ug extracted protein)',' (ug extracted protein/mg tissue)',' (fmol target protein/mg tissue)']
+}

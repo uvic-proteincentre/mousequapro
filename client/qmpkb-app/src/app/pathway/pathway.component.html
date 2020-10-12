@@ -1,0 +1,34 @@
+<div [hidden]="pathwayDataStatus">
+        Wait! We are pulling data for KEGG Pathway ....
+</div>
+
+<div class="container-fluid" >
+
+  <div *ngIf="keggDatalen > 0">
+    <table id=""  datatable  [dtOptions]="dtOptions" class="display cell-border" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+            <th>KEGG Pathway Name</th>
+            <th>Mouse pathway</th>
+            <th>Human pathway</th>
+            <th>View pathway on KEGG</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let items of keggData">
+            <td [innerHTML]="items[0]"></td>
+            <td *ngIf="items[1] !=='NA'">
+              <a target="_blank" href="/viewpathway/?Uniprotkb={{ pathwayInputData }}&organismid=10090&pathwayid={{ items[1] }}&pathwayname={{ items[0] }}">{{ items[1] }}</a>
+            </td>
+            <td *ngIf="items[1] =='NA'">NA</td>
+            <td [innerHTML]="items[2]"></td>
+            <td [innerHTML]="items[3]"></td>
+          </tr>
+      </tbody>
+    </table>
+    <p>Data source:<strong>KEGG</strong> </p>
+  </div>
+  <div *ngIf="keggDatalen == 0">
+      <p>This data entry is not available due to technical error in connecting to an external data resource. Please try again later.</p>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div style="display: inline-block;">
+  <select [(ngModel)]="selected" (change)='onOptionsSelected($event)' [disabled]="checkIfTwoAreSeleected"s>
+    <option [ngValue]="undefined" disabled>Select Any</option>
+    <option *ngFor="let foldItem of queryData | keyvalue"
+    [ngValue]="foldItem" [selected]="foldItem.key == selected"> {{foldItem.key}} </option>
+  </select>
+  <div *ngIf="selected.value?.length > 0" >
+    <div *ngFor="let field of fieldArray; index as idx" style="display: inline-block;">
+      <select #selectValue (change)="changed(selectValue.value,i)" [disabled]="checkIfTwoAreSeleected">
+        <option value="undefined" disabled>Select Any</option>
+        <ng-container *ngFor="let opt of selected.value" >
+          <option *ngIf="selectValue.value === opt || !isSelected(opt)" value={{opt}} [ngValue]="opt">
+          {{opt}}
+        </option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div [hidden]="plotStatus">
+	Wait! Plot will be visible soon....
+</div>
+
+<div [hidden]="dataStatus">
+	No Quantified Data available
+</div>
+
+<div id='myDiv' style="width: 100%; height: 20%;"></div>

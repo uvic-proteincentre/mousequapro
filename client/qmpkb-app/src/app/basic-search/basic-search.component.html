@@ -1,0 +1,66 @@
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fff"
+type = "ball-atom"
+fullScreen = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+
+<!-- <form #searchForm='ngForm' class="navbar-form" (ngSubmit)='submitSearch($event, searchForm)'>
+  <div class="form-group">
+          <input type="text" id="myMessage" class="form-control" placeholder="Search term" name="searchterm" [(ngModel)]='searchQuery' data-toggle="tooltip" data-placement="bottom" title="Search by UniProtKB Accession,Protein name,Gene name,Peptide sequence, Panel, Strain, Knockout, Sex, Biological Matrix, Sub Cellular Location, Kegg pathway name,Disease name, GO ID, GO name or GO term"  [value]="selectedExampleValue"  required/>
+    </div>
+	    <input class ="btn btn-primary" type="submit" id="submitid" value="Submit" [disabled]="!searchForm.valid"/>&nbsp;
+		<nav id="qmpkbexample"  [(ngModel)]="selectedExampleValue" name="searchterm" ngDefaultControl>
+			<ul class="dropdown-menu" uib-dropdown-menu="" role="menu">
+	  			<li>
+	    			<a href="#">Examples</a>
+	    			<ul>
+	      				<li *ngFor="let fitems of fields">
+        					<td *ngFor="let item of fitems" (click)="getValue(item)">
+        						<a href="#" >{{item.name}}</a>
+        					</td>
+	     				</li>
+	    			</ul>
+	  			</li>
+			</ul>
+		</nav>
+	
+</form>
+<div class="col-sm-4" *ngIf="selectedExampleName.length > 1">
+		Retrieve result using {{ selectedExampleName }}	
+</div> -->
+
+
+<fieldset>
+<form #searchForm='ngForm' class="navbar-form" (ngSubmit)='submitSearch($event, searchForm)'>
+	<div>
+	  <div class="form-group">
+	          <input type="text" id="myMessage" class="form-control" placeholder="Search term" name="searchterm" [(ngModel)]='searchQuery' data-toggle="tooltip" data-placement="bottom" title="Search by Protein name,Gene name,UniProtKB Accession,,Peptide sequence, Panel, Strain, Mutant, Sex, Biological Matrix, Sub Cellular Location, Kegg pathway name,Disease name, GO ID, GO term or GO aspects"  [value]="selectedExampleValue"  style="padding-left: 2px;" required/>
+	    </div>
+		<input (click)="submitFunction()" class ="btn btn-primary" type="submit" id="submitid" value="Submit" [disabled]="!searchForm.valid"/>
+		<div class="dropdown keep-open" id="qmpkbexample"  [(ngModel)]="selectedExampleValue" name="searchterm" ngDefaultControl style="float: right;">
+			<button (click)="exampleFunction()" id="bt" data-toggle="dropdown" class="btn btn-primary">Examples <span class="caret"></span></button>
+            <div id="myDropdown" class="dropdown-content">
+                <tr *ngFor="let fitems of fields">
+                    <td *ngFor="let item of fitems" (click)="getValue(item)">
+                        <a href="#" (click)="exampleDisplay()" >{{item.name}}</a>
+                    </td>
+                </tr>
+            </div>
+        </div>
+	</div>
+
+</form>
+</fieldset>
+
+<!-- <div class="col-sm-4" *ngIf="selectedExampleName.length > 1">
+		Retrieve result using {{ selectedExampleName }}	
+</div> -->
+
+<div class="alert" [class.visible]="alertIsVisible">
+	Oopps. No Results matched with your search criteria!
+</div>
